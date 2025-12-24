@@ -18,9 +18,8 @@ View [related thread on Reddit](https://reddit.com/r/StableDiffusion/comments/1p
 It was specifically designed to boost photorealism in SDXL. Demo images generated with [Snakebite 2.4 Turbo](https://civitai.com/models/2068592/snakebite-2). If you're using a different checkpoint or VAE, you may need to tweak the parameters for best results.
 
 
-💡 **Important:** If the effect is too strong, please check `example_workflows` for recommended presets!
-
----
+> [!TIP]
+> If the effect is too strong, please check `example_workflows` for recommended presets!
 
 ---
 
@@ -50,7 +49,8 @@ Find the node in:
 
 **Add Node → latent → postprocess → SpectralVAEDetailer**
 
-This node is also available on the Comfy Registry.
+> [!TIP]
+> This node is also available on the Comfy Registry, so you can install it through Comfy Manager.
 
 ## Usage
 
@@ -64,7 +64,7 @@ Typical chain:
 
 ### `sigma`
 
-The noise level used for the single UNet evaluation. Lower values tend to be subtler; higher values can flatten contrast more aggressively.
+The noise level used for the single UNet evaluation. Lower values tend to be subtler; higher values may cause the image to look "splotchy" - especially in plain areas, such as solid color backgrounds.
 
 ### `detail_strength`, `hf_radius`, `protect_lows`
 
@@ -98,6 +98,8 @@ Latent micrograin injection:
 
 ## Notes
 
-This node is intentionally *speed-oriented*: it uses one extra UNet pass plus lightweight tensor ops.
+This node is *speed-oriented* by design: it uses one extra UNet pass plus lightweight tensor ops.
 
-It's primarily tuned for SDXL photorealism workflows, but can be experimented with on other latent diffusion models.
+For typical SDXL resolution (1024px), the node takes around 0.2-0.4s to complete on a Geforce 3090.
+
+It's primarily tuned for SDXL photorealism workflows, but can be experimented with on other latent diffusion models. You can try using it as a general-purpose color grading tool.
